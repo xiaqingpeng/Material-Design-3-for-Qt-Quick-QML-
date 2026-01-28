@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("md3", "Main");
+    engine.load(QUrl(QStringLiteral("qrc:/md3/Main.qml")));
 
     return app.exec();
 }
