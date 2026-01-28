@@ -89,3 +89,4 @@ md3/
 ## License
 
 This project is licensed under the LGPL v3 License - see the [LICENSE](LICENSE) file for details.
+# Material-Design-3-for-Qt-Quick-QML-
