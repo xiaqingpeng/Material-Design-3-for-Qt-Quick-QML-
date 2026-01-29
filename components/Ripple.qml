@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import md3
 
 MouseArea {
@@ -15,56 +14,25 @@ MouseArea {
     
     hoverEnabled: true
     
-    // Mask for clipping (defines the shape)
-    Item {
-        id: mask
-        anchors.fill: parent
-        layer.enabled: true
-        visible: false
+    Rectangle {
+        id: ripple
+        property real targetSize: Math.max(root.width, root.height) * 2.5
         
-        Rectangle {
-            id: maskRect
-            anchors.fill: parent
-            radius: root.clipRadius
-            color: "black"
-        }
+        width: size
+        height: size
+        radius: size / 2
+        color: root.rippleColor
+        opacity: 0
+        
+        property real size: 0
+        
+        x: startX - width / 2
+        y: startY - height / 2
+        
+        property real startX: 0
+        property real startY: 0
     }
     
-    // Content containing the ripple
-    Item {
-        id: rippleContent
-        anchors.fill: parent
-        visible: false 
-        
-        Rectangle {
-            id: ripple
-            property real targetSize: Math.max(root.width, root.height) * 2.5
-            
-            width: size
-            height: size
-            radius: size / 2
-            color: root.rippleColor
-            opacity: 0
-            
-            property real size: 0
-            
-            // Center point
-            x: startX - width / 2
-            y: startY - height / 2
-            
-            property real startX: 0
-            property real startY: 0
-        }
-    }
-    
-    // Apply the mask
-    MultiEffect {
-        source: rippleContent
-        anchors.fill: parent
-        maskEnabled: true
-        maskSource: mask
-    }
-
     ParallelAnimation {
         id: anim
         
@@ -86,13 +54,6 @@ MouseArea {
             easing.type: Easing.InQuad
         }
     }
-    
-    // Separate opacity animation for press vs release? 
-    // Material ripple: 
-    // 1. Press: Expands to fill, opacity stays.
-    // 2. Release: Fades out.
-    
-    // Let's implement a better state-based or signal-based animation
     
     PropertyAnimation {
         id: expandAnim
@@ -136,4 +97,17 @@ MouseArea {
     onReleased: fadeOutAnim.start()
     onCanceled: fadeOutAnim.start()
     onExited: if (!pressed) fadeOutAnim.start()
+    
+    Item {
+        id: mask
+        anchors.fill: parent
+        visible: false
+        
+        Rectangle {
+            id: maskRect
+            anchors.fill: parent
+            radius: root.clipRadius
+            color: "black"
+        }
+    }
 }

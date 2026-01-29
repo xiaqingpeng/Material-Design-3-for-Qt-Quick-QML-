@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import md3
 
 Item {

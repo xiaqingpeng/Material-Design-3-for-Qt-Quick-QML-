@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import md3
 
 Item {
@@ -141,15 +140,19 @@ Item {
             height: width
             radius: width / 2
             color: control.enabled ? _colors.primary : Qt.rgba(_onSurfaceColor.r, _onSurfaceColor.g, _onSurfaceColor.b, 0.38)
-            
-            layer.enabled: control.enabled
-            layer.effect: MultiEffect {
-                shadowEnabled: true
-                shadowColor: _colors.shadow
-                shadowBlur: 4
-                shadowVerticalOffset: 2
-                shadowOpacity: 0.2
-            }
+        }
+        
+        // Simple shadow for thumb1
+        Rectangle {
+            visible: control.enabled
+            anchors.centerIn: thumb1
+            width: thumb1.width
+            height: thumb1.height
+            anchors.leftMargin: 2
+            anchors.topMargin: 2
+            z: -1
+            radius: thumb1.radius
+            color: Qt.rgba(0, 0, 0, 0.2)
         }
         
          // Value Label 1
@@ -243,15 +246,19 @@ Item {
             height: width
             radius: width / 2
             color: control.enabled ? _colors.primary : Qt.rgba(_onSurfaceColor.r, _onSurfaceColor.g, _onSurfaceColor.b, 0.38)
-            
-            layer.enabled: control.enabled
-            layer.effect: MultiEffect {
-                shadowEnabled: true
-                shadowColor: _colors.shadow
-                shadowBlur: 4
-                shadowVerticalOffset: 2
-                shadowOpacity: 0.2
-            }
+        }
+        
+        // Simple shadow for thumb2
+        Rectangle {
+            visible: control.enabled
+            anchors.centerIn: thumb2
+            width: thumb2.width
+            height: thumb2.height
+            anchors.leftMargin: 2
+            anchors.topMargin: 2
+            z: -1
+            radius: thumb2.radius
+            color: Qt.rgba(0, 0, 0, 0.2)
         }
         
          // Value Label 2

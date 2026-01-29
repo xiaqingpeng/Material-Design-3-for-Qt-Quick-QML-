@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import md3
 
 Item {
@@ -48,21 +47,17 @@ Item {
         anchors.fill: parent
         radius: root.radius
         color: root.containerColor
-        visible: elevationLevel <= 0 
     }
 
-    // Shadow Effect
-    MultiEffect {
-        anchors.fill: shadowSource
-        source: shadowSource
+    // Simple shadow effect (only for elevated cards)
+    Rectangle {
         visible: elevationLevel > 0
+        anchors.fill: shadowSource
+        anchors.leftMargin: elevationLevel * 1.2
+        anchors.topMargin: elevationLevel * 1.2
         z: -1
-        
-        shadowEnabled: true
-        shadowColor: Theme.color.shadow
-        shadowBlur: elevationLevel * 0.2
-        shadowVerticalOffset: elevationLevel * 1.2
-        shadowOpacity: 0.2 + (elevationLevel * 0.02)
+        radius: root.radius
+        color: Qt.rgba(0, 0, 0, 0.2 + (elevationLevel * 0.02))
     }
 
     // Main Container

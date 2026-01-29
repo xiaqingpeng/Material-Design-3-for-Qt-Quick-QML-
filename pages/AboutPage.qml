@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import md3
 import "../components" as Md3
 
@@ -17,39 +16,20 @@ Item {
             Layout.preferredWidth: 120
             Layout.preferredHeight: 120
             
-            Image { 
-                id: sourceItem 
-                source: "https://avatars.githubusercontent.com/u/46568635?v=4" 
-                anchors.centerIn: parent 
-                width: parent.width 
-                height: parent.height 
-                fillMode: Image.PreserveAspectCrop 
-                visible: false 
-                asynchronous: true
-                cache: true
-            } 
-        
-            MultiEffect { 
-                id: multiEffect 
-                source: sourceItem 
-                anchors.fill: sourceItem 
-                maskEnabled: true 
-                maskSource: mask 
-                maskThresholdMin: 0.5 
-                maskSpreadAtMin: 1.0 
-            } 
-        
-            Item { 
-                id: mask 
-                width: sourceItem.width 
-                height: sourceItem.height 
-                layer.enabled: true 
-                visible: false 
+            Rectangle {
+                anchors.fill: parent
+                radius: width / 2
+                clip: true
                 
-                Rectangle { 
-                    anchors.fill: parent 
-                    radius: width / 2 
-                    color: "black"
+                Image { 
+                    id: sourceItem 
+                    source: "https://avatars.githubusercontent.com/u/46568635?v=4" 
+                    anchors.centerIn: parent 
+                    width: parent.width 
+                    height: parent.height 
+                    fillMode: Image.PreserveAspectCrop 
+                    asynchronous: true
+                    cache: true
                 } 
             } 
         }

@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import md3
 
 Item {
@@ -627,15 +626,14 @@ Item {
                 }
             }
             
-            MultiEffect {
-                source: pickerContainer
+            // Simple shadow effect
+            Rectangle {
                 anchors.fill: pickerContainer
-                shadowEnabled: true
-                shadowColor: Theme.color.shadow
-                shadowBlur: 12
-                shadowVerticalOffset: 4
-                shadowOpacity: 0.3
+                anchors.leftMargin: 4
+                anchors.topMargin: 4
                 z: -1
+                radius: 28
+                color: Qt.rgba(0, 0, 0, 0.3)
             }
         }
     }

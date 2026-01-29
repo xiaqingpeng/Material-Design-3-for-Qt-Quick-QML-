@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import md3
 
 Item {
@@ -95,20 +94,16 @@ Item {
                 anchors.fill: parent
                 radius: menuBackground.radius
                 color: _colors.surfaceContainer
-                visible: false
             }
             
-            // Shadow Effect
-            MultiEffect {
-                source: shadowSource
+            // Simple shadow effect
+            Rectangle {
                 anchors.fill: shadowSource
-                shadowEnabled: true
-                shadowColor: _colors.shadow
-                shadowBlur: _elevation.level2 * 0.5
-                shadowVerticalOffset: _elevation.level2
-                shadowOpacity: 0.2
-                z: 0
-                // Opacity is inherited from parent (popupContainer), no need to double apply
+                anchors.leftMargin: _elevation.level2
+                anchors.topMargin: _elevation.level2
+                z: -1
+                radius: _shape.cornerExtraSmall
+                color: Qt.rgba(0, 0, 0, 0.2)
             }
             
             // Menu Background & Content

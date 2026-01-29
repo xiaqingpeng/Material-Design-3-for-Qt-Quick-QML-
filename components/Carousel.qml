@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import md3
 
 Item {
@@ -44,16 +43,6 @@ Item {
                 anchors.fill: background
                 clip: true
 
-                layer.enabled: true
-                layer.effect: MultiEffect {
-                    maskEnabled: true
-                    maskSource: containerMask
-                    autoPaddingEnabled: false
-                    antialiasing: true
-                    maskThresholdMin: 0.5
-                    maskSpreadAtMin: 1.0
-                }
-
                 Image {
                     id: sourceImage
                     anchors.verticalCenter: parent.verticalCenter
@@ -91,20 +80,6 @@ Item {
                     verticalAlignment: Image.AlignVCenter
 
                     x: (parent.width - width) / 2 + scrollProgress * 60
-                }
-
-
-                Item {
-                    id: containerMask
-                    anchors.fill: parent
-                    layer.enabled: true
-                    visible: false
-
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: background.radius
-                        color: "black"
-                    }
                 }
 
                 LoadingIndicator {

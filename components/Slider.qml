@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import md3
 
 Item {
@@ -185,17 +184,20 @@ Item {
             radius: width / 2
             color: control.enabled ? _colors.primary : Qt.rgba(_onSurfaceColor.r, _onSurfaceColor.g, _onSurfaceColor.b, 0.38)
             
-            // Shadow
-            layer.enabled: control.enabled
-            layer.effect: MultiEffect {
-                shadowEnabled: true
-                shadowColor: _colors.shadow
-                shadowBlur: 4
-                shadowVerticalOffset: 2
-                shadowOpacity: 0.2
-            }
-            
             Behavior on width { NumberAnimation { duration: 100 } }
+        }
+        
+        // Simple shadow for thumb
+        Rectangle {
+            visible: control.enabled
+            anchors.centerIn: thumb
+            width: thumb.width
+            height: thumb.height
+            anchors.leftMargin: 2
+            anchors.topMargin: 2
+            z: -1
+            radius: thumb.radius
+            color: Qt.rgba(0, 0, 0, 0.2)
         }
     }
     

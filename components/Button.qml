@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import md3
 
 Item {
@@ -109,24 +108,17 @@ Item {
         anchors.fill: parent
         radius: _shape.cornerFull
         color: containerColor
-        visible: elevationLevel === 0 // Hide when elevated (MultiEffect renders it)
     }
 
-    // Shadow Effect (Only visible when elevated)
-    MultiEffect {
-        anchors.fill: shadowSource
-        source: shadowSource
+    // Simple shadow effect (only for elevated buttons)
+    Rectangle {
         visible: elevationLevel > 0
-        
-        shadowEnabled: true
-        shadowColor: _colors.shadow
-        shadowBlur: elevationLevel * 0.06 // Reduced multiplier for subtler shadow (was 0.1)
-        shadowVerticalOffset: elevationLevel * 1.5 // Reduced offset (was 2)
-        shadowOpacity: 0.15 + (elevationLevel * 0.04) // Reduced opacity (was 0.2 + ...)
-        blurMax: 32
-        
-        // Ensure shadow is drawn behind the source visually (although MultiEffect draws both)
+        anchors.fill: shadowSource
+        anchors.leftMargin: elevationLevel * 1.5
+        anchors.topMargin: elevationLevel * 1.5
         z: -1
+        radius: _shape.cornerFull
+        color: Qt.rgba(0, 0, 0, 0.15 + (elevationLevel * 0.04))
     }
 
     // Container

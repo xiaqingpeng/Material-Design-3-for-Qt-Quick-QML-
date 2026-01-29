@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import md3
 
 Item {
@@ -57,21 +56,17 @@ Item {
         anchors.fill: parent
         radius: root.fabRadius
         color: root.containerColor
-        visible: elevationLevel === 0 // Hide when elevated (MultiEffect renders it)
     }
 
-    // Shadow Effect (Only visible when elevated)
-    MultiEffect {
-        anchors.fill: shadowSource
-        source: shadowSource
+    // Simple shadow effect (only for elevated FAB)
+    Rectangle {
         visible: elevationLevel > 0
+        anchors.fill: shadowSource
+        anchors.leftMargin: elevationLevel * 1.2
+        anchors.topMargin: elevationLevel * 1.2
         z: -1
-        
-        shadowEnabled: true
-        shadowColor: Theme.color.shadow
-        shadowBlur: elevationLevel * 0.2
-        shadowVerticalOffset: elevationLevel * 1.2
-        shadowOpacity: 0.2 + (elevationLevel * 0.02)
+        radius: root.fabRadius
+        color: Qt.rgba(0, 0, 0, 0.2 + (elevationLevel * 0.02))
     }
 
     // Background Container (Transparent, handles interactions)

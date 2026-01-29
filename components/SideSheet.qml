@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import md3
 
 Item {
@@ -56,14 +55,14 @@ Item {
         
         Behavior on x { NumberAnimation { duration: 300; easing.type: Easing.OutCubic } }
 
-        // Shadow
-        layer.enabled: true
-        layer.effect: MultiEffect {
-            shadowEnabled: true
-            shadowBlur: 1.0
-            shadowColor: "#40000000"
-            shadowVerticalOffset: 0
-            shadowHorizontalOffset: -2
+        // Simple shadow effect
+        Rectangle {
+            visible: root.visible
+            anchors.fill: drawerPanel
+            anchors.rightMargin: -2
+            z: -1
+            color: "#40000000"
+            radius: 0
         }
 
         ColumnLayout {

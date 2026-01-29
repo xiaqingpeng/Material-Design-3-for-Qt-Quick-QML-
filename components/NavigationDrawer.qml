@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import md3
 
 Item {
@@ -75,14 +74,14 @@ Item {
             NumberAnimation { duration: 300; easing.type: Easing.OutCubic } 
         }
 
-        // Shadow (Only for modal)
-        layer.enabled: root.modal
-        layer.effect: MultiEffect {
-            shadowEnabled: true
-            shadowBlur: 1.0
-            shadowColor: "#40000000"
-            shadowVerticalOffset: 0
-            shadowHorizontalOffset: 2
+        // Shadow (Only for modal) - Simple Rectangle-based shadow
+        Rectangle {
+            visible: root.modal
+            anchors.fill: parent
+            anchors.rightMargin: -4
+            z: -1
+            color: "#40000000"
+            radius: 0
         }
 
         ColumnLayout {
